@@ -5,7 +5,7 @@ import { signup, login } from '../../config/firebase'
 
 const Login = () => {
 
-  const [currentState, setCurrentState] = useState('Sign up')
+  const [currentState, setCurrentState] = useState('Login')
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,10 +29,13 @@ const Login = () => {
         <input onChange={(e)=>{setEmail(e.target.value)}} value={email} type="email" className="form-input" placeholder='email' required/>
         <input onChange={(e)=>{setPassword(e.target.value)}} value={password} type="password" className="form-input" placeholder='password' required/>
         <button type='submit'>{currentState == 'Sign up' ? 'Create account': 'Login now'}</button>
-        <div className="login-term">
-          <input type="checkbox" />
-          <p>Agree to the terms of use & privacy policy.</p>
-        </div>
+        {currentState == 'Sign up' ? 
+          <div className="login-term">
+            <input type="checkbox" required/>
+            <p>Agree to the terms of use & privacy policy.</p>
+          </div>
+        : null}
+        
         <div className="login-forgot">
           {
             currentState == 'Sign up' 
